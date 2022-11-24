@@ -1,4 +1,4 @@
-rm -rf student-submission
+rm -rf student-submission > output.txt
 if [ -e "student-submission/ListExamples.java" ]
 then
 	rm ListExamples.java
@@ -6,7 +6,7 @@ then
 fi
 git clone $1 student-submission
 
-if [ -e "student-submission/ListExamples.java" ]
+if [ -e "student-submission/ListExamples.java" 2> errors.txt ]
 then
 	echo "ListExamples file found: +20 points"
 	cp student-submission/ListExamples.java ./
@@ -33,7 +33,7 @@ then
 		fi
 	fi
 else
-	echo "ListExamples file not found"
+	echo "ListExamples file not found" > output.txt 2> std.err
 	echo "Score: 0/100"
-	exit
+	exit 1
 fi
