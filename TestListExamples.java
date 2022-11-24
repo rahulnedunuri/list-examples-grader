@@ -22,4 +22,23 @@ public class TestListExamples {
     expected.add("d");
     assertEquals(expected, joined);
   }
+
+  @Test
+  public void testFilter(){
+    ListExamples listex = new ListExamples();
+    List<String> initial = new ArrayList<>();
+    initial.add("apple");
+    initial.add("parchment");
+    initial.add("bananas");
+    initial.add("trays");
+    initial.add("charger");
+    StringChecker sc = new PCheck();
+    assertEquals(2, listex.filter(initial, sc).size());
+  }
+}
+
+class PCheck implements StringChecker{
+  public boolean checkString(String s){
+    return s.contains("p");
+  }
 }
